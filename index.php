@@ -1,3 +1,7 @@
+<?php
+  require 'config.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,19 +33,17 @@
     </div>
     <div class="header__content">
       <div>
-        <h1>Arya item<br />
-          <h2>Hallo, saya dari teknik informatika</h2>
+        <h1>Arya item</h1>
+        <h2>Hallo, saya dari teknik informatika</h2>
       </div>
       <p class="section__description">
-        <br>
-      Saya adalah seorang mahasiswa Teknik Informatika yang memiliki minat mendalam dalam teknologi digital. 
-      dan tertarik dengan berbagai aspek teknologi, mulai dari pengembangan perangkat lunak hingga keamanan
-      jaringan dan desain antarmuka pengguna. Saya senang belajar tentang tren terbaru dalam industri teknologi 
-      dan selalu mencari cara untuk menggali lebih dalam dalam bidang yang saya tempu. Dengan semangatku yang
-      besar dan keingintahuanku yang tak terbatas, saya bertekad untuk menjadi profesional yang kompeten dan
-      berpengaruh dalam dunia teknologi digital.
+        Saya adalah seorang mahasiswa Teknik Informatika yang memiliki minat mendalam dalam teknologi digital.
+        dan tertarik dengan berbagai aspek teknologi, mulai dari pengembangan perangkat lunak hingga keamanan
+        jaringan dan desain antarmuka pengguna. Saya senang belajar tentang tren terbaru dalam industri teknologi
+        dan selalu mencari cara untuk menggali lebih dalam dalam bidang yang saya tempuh. Dengan semangatku yang
+        besar dan keingintahuanku yang tak terbatas, saya bertekad untuk menjadi profesional yang kompeten dan
+        berpengaruh dalam dunia teknologi digital.
       </p>
-      
     </div>
   </header>
 
@@ -55,20 +57,31 @@
         Saya adalah mahasiswa Teknik informatika semester 4 di universitas sam ratu langi manado dengan perolehan nilai IPK 3,76.
         Sebelum saya berkuliah, saya berasal dari sekolah SMK YADIKA MANADO Jurusan Teknik Komputer dan Jaringan dengan perolehan nilai
         semester 1-5 dengan nilai rata-rata 84,00.
+      </p>
     </div>
   </section>
 
   <section class="section__container service__container" id="service">
     <h2 class="section__header">Keahlian saya</h2>
     <div class="service__grid">
+      <?php
+      // Fetch services from the database
+      $query = "SELECT * FROM services";
+      $result = mysqli_query($conn, $query);
+
+      if ($result):
+          while ($row = mysqli_fetch_assoc($result)):
+      ?>
       <div class="service__card">
         <span><i class="ri-polaroid-fill"></i></span>
-        <h4>Mikrotik</h4>
-        <p>
-         Mampu membuat jaringan Local Area Network dan melakkan konfigurasi sehinggan bisa terjadi pertukaran data yang baik
-        </p>
+        <h4><?= $row['title'] ?></h4>
+        <p><?= $row['description'] ?></p>
       </div>
-      <div class="service__card">
+      <?php
+          endwhile;
+      endif;
+      ?>
+       <div class="service__card">
         <span><i class="ri-polaroid-fill"></i></span>
         <h4>Network address</h4>
         <p>
@@ -119,16 +132,18 @@
       <div class="portfolio__card">
         <img src="aset/server.jpeg" alt="portfolio" />
       </div>
+    </div>
   </section>
 
   <section class="section__container contact__container" id="contact">
     <h2>Contact</h2>
     <p>KONTAK SAYA :</p>
+    <ul>
       <li>Email : aryaitem1105@gmail.com</li>
       <li>Phone : 082199590151</li>
-      <li>Instagram :<a href="https://www.instagram.com/aryaitem?igsh=MW0xdDFpbGU2OXU4ag%3D%3D&utm_source=qr"> aryaitem</a></li>
-      <li>facebook :<a href="https://www.facebook.com/share/CptESWWs98TkT62s/?mibextid=LQQJ4d"> aryaitem</a></li>
-    
+      <li>Instagram : <a href="https://www.instagram.com/aryaitem?igsh=MW0xdDFpbGU2OXU4ag%3D%3D&utm_source=qr">aryaitem</a></li>
+      <li>Facebook : <a href="https://www.facebook.com/share/CptESWWs98TkT62s/?mibextid=LQQJ4d">aryaitem</a></li>
+    </ul>
   </section>
 
   <script src="https://unpkg.com/scrollreveal"></script>
